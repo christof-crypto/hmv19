@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 70" width="360" height="70">
+  <style>
+    .dark { fill: #2c3e50; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; }
+    .light { fill: #9cb3c9; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 800; }
+    .arrow { fill: #9cb3c9; }
+  </style>
+  <text x="0" y="55" font-size="52" class="dark">Log</text>
+  <text x="92" y="55" font-size="52" class="light">Cap</text>
+  <!-- Arrow -->
+  <g transform="translate(195, 15)">
+    <path d="M10 20 L25 20 L25 12 L38 25 L25 38 L25 30 L10 30 Z" class="arrow"/>
+    <path d="M22 5 A22 22 0 1 1 0 30" fill="none" stroke="#9cb3c9" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <text x="238" y="55" font-size="52" class="dark">slo</text>
+</svg>
