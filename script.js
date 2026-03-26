@@ -25,29 +25,27 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const formData = new FormData(contactForm);
-      const name = formData.get('name');
-      const phone = formData.get('phone');
-      const email = formData.get('email');
-      const message = formData.get('message');
 
-      // Build mailto link
-      const subject = encodeURIComponent(`Henvendelse fra ${name} - LogCap Oslo`);
-      const body = encodeURIComponent(
-        `Navn: ${name}\nTelefon: ${phone}\nE-post: ${email}\n\nMelding:\n${message}`
-      );
+      fetch(contactForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          contactForm.style.display = 'none';
+          document.querySelector('.form-success').classList.add('show');
+          contactForm.reset();
 
-      window.location.href = `mailto:co@oroeiendom.no?subject=${subject}&body=${body}`;
-
-      // Show success message
-      contactForm.style.display = 'none';
-      document.querySelector('.form-success').classList.add('show');
-
-      // Reset after 5 seconds
-      setTimeout(() => {
-        contactForm.style.display = 'block';
-        contactForm.reset();
-        document.querySelector('.form-success').classList.remove('show');
-      }, 5000);
+          setTimeout(() => {
+            contactForm.style.display = 'block';
+            document.querySelector('.form-success').classList.remove('show');
+          }, 5000);
+        } else {
+          alert('Noe gikk galt. Vennligst prøv igjen eller kontakt oss direkte på co@oroeiendom.no');
+        }
+      }).catch(() => {
+        alert('Noe gikk galt. Vennligst prøv igjen eller kontakt oss direkte på co@oroeiendom.no');
+      });
     });
   }
 
